@@ -1,42 +1,64 @@
 body {
-  padding: 0;
+  padding: 0px;
   width: 100%;
   height: 100vh;
+  box-sizing: border-box;
+}
+.mainPage {
+  display: flex;
 }
 
 .navbar {
   background-color: darkorange;
-  width: 100%;
-  height: 10vh;
+  width: 14vw;
+  height: 100vh;
   display: flex;
+  flex-direction: column;
+
+  padding: 10px;
+}
+.topNav {
+  width: 100%;
+
+  text-align: right;
 }
 
 .navbar ul {
+  margin-top: 50px;
   display: flex;
-  width: 50%;
-  justify-content: space-around;
-  align-items: center;
+  flex-direction: column;
+  width: 100%;
   text-decoration: none;
   list-style: none;
   font-weight: bold;
   color: white;
-  font-size: 25px;
+  font-size: 20px;
+  cursor: pointer;
+  padding-left: 24px;
+}
+.navbar ul li {
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+}
+.iconNav {
+  margin-right: 10px;
 }
 
 .mainBox {
   display: flex;
-  align-items: center;
+
   flex-direction: column;
-  height: 90vh;
+  width: 86%;
 }
 .inputContainer {
   display: flex;
   flex-direction: column;
   border-radius: 10px;
+  margin-left: 40px;
   align-items: flex-start;
-  height: 30vh;
+  height: 20vh;
   width: 50%;
-  border: 1px solid gray;
   margin-top: 20px;
   background-color: bisque;
 }
@@ -46,31 +68,82 @@ body {
 
 .inputBox {
   display: flex;
+  width: 90%;
 }
 .inputApi {
-  width: 300px;
-  font-size: 20px;
+  width: 80%;
+  font-size: 18px;
   border-radius: 10px;
   margin-left: 40px;
   margin-right: 30px;
+  border: 0px;
+  padding: 5px;
 }
 
 .mainBtn {
+  width: 100px;
   border-radius: 10px;
   background-color: darkorange;
   padding: 5px 10px;
+  cursor: pointer;
+  color: white;
+  border: 0px;
+  font-size: 18px;
 }
+
+.mainBtn:hover {
+  opacity: 0.65;
+}
+
 .responseBox {
+  width: 100%;
+  display: flex;
+
+  margin-top: 30px;
+}
+
+.centerBox {
+  display: flex;
+  align-items: center;
+  padding: 10px;
   width: 90%;
+  height: auto;
+}
+.leftResponseBox {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+  height: 90%;
 }
 
 .dataList {
-  text-decoration: none;
-  list-style: none;
+  display: flex;
+  align-items: center;
 }
-.dataList li {
-  margin-bottom: 10px;
+.dataList p {
+  width: 80%;
+  margin-left: 20px;
 }
-.dataList li span {
-  font-weight: bold;
+
+@media screen and (max-width: 960px) {
+  .navbar ul {
+    display: none;
+  }
+  .inputContainer {
+    width: 80%;
+  }
+  .inputBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .mainBtn {
+    margin-top: 20px;
+  }
+  .inputApi {
+    font-size: 14px;
+  }
+  .dataList {
+    width: 60%;
+  }
 }

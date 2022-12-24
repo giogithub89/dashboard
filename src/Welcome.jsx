@@ -1,58 +1,65 @@
-import axios from "axios";
 import React, { useState } from "react";
-import { useEffect } from "react";
+
 import "./welcome.css";
+import { AiFillHome } from "react-icons/ai";
+import { FaUserAlt } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
+import { FaCog } from "react-icons/fa";
+import { BiStats } from "react-icons/bi";
+import { IoMdMenu } from "react-icons/io";
 
 export default function Welcome() {
-  const [posts, setPost] = useState([]);
   const [apiName, setApiName] = useState("");
-
-  // function fetchData() {
-  //   axios
-  //     .get("https://api.publicapis.org/entries")
-  //     .then((res) => {
-  //       console.log(res.data);
-
-  //       setPost(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     }, []);
-  // }
-  // const handleSubmit = () => {
-  //   fetchData();
-  // };
+  const [api, setApi] = useState();
+  const [link, setLink] = useState();
+  const [category, setCategory] = useState();
+  const [desc, setDescr] = useState();
 
   const fetchData = async () => {
     try {
       const response = await fetch("https://api.publicapis.org/entries");
       const data = await response.json();
       const entries = data.entries;
-      //entries.map((item) => console.log(item.API));
+      entries.map(function (item) {
+        if (item.API === apiName) {
+          setApi(item.API);
+          setLink(item.Link);
+          setCategory(item.Category);
+          setDescr(item.Description);
+          //console.log(api, link);
+        }
+      });
       //console.log(entries);
-      setPost(entries);
     } catch (err) {
       console.log(err);
     }
   };
 
-  useEffect(() => {
-    console.log(apiName);
-  });
-
-  //onChange={handleAnimalChange}
-  //onSubmit={fetchData}
-
   //AdoptAPet
   //Axolotl
 
   return (
-    <div>
+    <div className="mainPage">
       <nav className="navbar">
+        <div className="topNav">
+          <IoMdMenu fill="#fff" style={{ height: "1.4em", width: "1.4em" }} />
+        </div>
         <ul>
-          <li>Home</li>
-          <li>Profile</li>
-          <li>Logout</li>
+          <li>
+            <AiFillHome className="iconNav" /> Home
+          </li>
+          <li>
+            <FaUserAlt className="iconNav" /> Profile
+          </li>
+          <li>
+            <BiStats className="iconNav" /> Stats
+          </li>
+          <li>
+            <FaCog className="iconNav" /> Settings
+          </li>
+          <li>
+            <FiLogOut className="iconNav" /> Logout
+          </li>
         </ul>
       </nav>
       <section className="mainBox">
@@ -66,27 +73,25 @@ export default function Welcome() {
           </div>
         </div>
         <div className="responseBox">
-          <ul className="dataList">
-            {posts.map(
-              (post, index) =>
-                post.API === apiName && (
-                  <div>
-                    <li key={index}>
-                      <span>Category:</span> {post.Category}{" "}
-                    </li>
-                    <li>
-                      <span>Api:</span> {post.API}{" "}
-                    </li>
-                    <li>
-                      <span>Link:</span> {post.Link}{" "}
-                    </li>
-                    <li>
-                      <span>Description:</span> {post.Description}{" "}
-                    </li>
-                  </div>
-                )
-            )}
-          </ul>
+          <div className="centerBox">
+            <div className="leftResponseBox">
+              <div className="dataList">
+                <h3>Category: </h3>
+                <p>{category} </p>
+              </div>
+              <div className="dataList">
+                <h3>Api: </h3> <p>{api}</p>
+              </div>
+              <div className="dataList">
+                <h3>Link: </h3>
+                <p>{link}</p>
+              </div>
+              <div className="dataList">
+                <h3>Description: </h3>
+                <p>{desc}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>
